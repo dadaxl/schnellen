@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "rooms": {
+      "$roomId": {
+        ".read": true,
+        ".write": true,
+        "gameState": {
+          "players": {
+            "$playerId": {
+              "hand": {
+                ".read": "auth == null || $playerId == auth.uid"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

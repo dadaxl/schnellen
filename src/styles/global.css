@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Lato:wght@400;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #f5ede0;
+  color: #3a2510;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; }
+input, select { font-family: inherit; }
+input:focus, select:focus { outline: none; }
+
+/* Holzmaserung als Hintergrundmuster */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      transparent,
+      transparent 80px,
+      rgba(160,100,40,0.04) 80px,
+      rgba(160,100,40,0.04) 82px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 40px,
+      rgba(120,70,20,0.03) 40px,
+      rgba(120,70,20,0.03) 41px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
