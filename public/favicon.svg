@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#a87040"/>
+      <stop offset="100%" stop-color="#5c3010"/>
+    </radialGradient>
+    <radialGradient id="cardshine" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#fffef8"/>
+      <stop offset="100%" stop-color="#f0e4c8"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Hintergrund: Holz-Kreis -->
+  <circle cx="256" cy="256" r="248" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#c8960a" stroke-width="10"/>
+  <circle cx="256" cy="256" r="234" fill="none" stroke="#f0b429" stroke-width="3" opacity="0.5"/>
+
+  <!-- Karte hinten links (gedreht) -->
+  <g transform="translate(256,272) rotate(-18) translate(-75,-100)">
+    <rect width="150" height="200" rx="14" fill="url(#cardshine)" stroke="#bbb" stroke-width="2"/>
+    <!-- Kartenrücken Muster -->
+    <rect x="8" y="8" width="134" height="184" rx="10" fill="none" stroke="#c8960a" stroke-width="2" opacity="0.6"/>
+    <rect x="16" y="16" width="118" height="168" rx="7" fill="none" stroke="#c8960a" stroke-width="1" opacity="0.3"/>
+    <!-- Raute Muster -->
+    <path d="M75 50 L100 90 L75 130 L50 90 Z" fill="#c8960a" opacity="0.35"/>
+    <path d="M75 90 L93 118 L75 146 L57 118 Z" fill="#c8960a" opacity="0.2"/>
+  </g>
+
+  <!-- Karte hinten rechts (gedreht) -->
+  <g transform="translate(256,272) rotate(18) translate(-75,-100)">
+    <rect width="150" height="200" rx="14" fill="url(#cardshine)" stroke="#bbb" stroke-width="2"/>
+    <rect x="8" y="8" width="134" height="184" rx="10" fill="none" stroke="#c8960a" stroke-width="2" opacity="0.6"/>
+    <rect x="16" y="16" width="118" height="168" rx="7" fill="none" stroke="#c8960a" stroke-width="1" opacity="0.3"/>
+    <path d="M75 50 L100 90 L75 130 L50 90 Z" fill="#c8960a" opacity="0.35"/>
+  </g>
+
+  <!-- Karte vorne (mittig) -->
+  <g transform="translate(256,268) translate(-75,-100)">
+    <rect width="150" height="200" rx="14" fill="#fffef8" stroke="#ccc" stroke-width="2.5"/>
+
+    <!-- Herz groß in der Mitte -->
+    <path d="M75 128
+      Q45 108 45 85
+      A22 22 0 0 1 75 72
+      A22 22 0 0 1 105 85
+      Q105 108 75 128Z"
+      fill="#c0392b"/>
+
+    <!-- Einbuchtung oben Herz -->
+    <rect x="68" y="56" width="14" height="18" rx="7" fill="#fffef8"/>
+
+    <!-- Glanzpunkt -->
+    <ellipse cx="60" cy="80" rx="9" ry="6" fill="rgba(255,255,255,0.45)"/>
+
+    <!-- Rang oben links -->
+    <text x="12" y="30" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#c0392b">A</text>
+    <!-- Kleines Herz unter Rang -->
+    <path d="M17 37 Q12 33 12 29 A5 5 0 0 1 17 25 A5 5 0 0 1 22 29 Q22 33 17 37Z" fill="#c0392b"/>
+
+    <!-- Rang unten rechts (gespiegelt) -->
+    <text x="138" y="184" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#c0392b" text-anchor="middle" transform="rotate(180, 126, 178)">A</text>
+    <path d="M133 171 Q128 167 128 163 A5 5 0 0 1 133 159 A5 5 0 0 1 138 163 Q138 167 133 171Z" fill="#c0392b"/>
+  </g>
+
+  <!-- Goldener Stern / Verzierung oben -->
+  <g transform="translate(256, 46)" opacity="0.9">
+    <path d="M0,-18 L4,-6 L16,-6 L7,2 L11,14 L0,8 L-11,14 L-7,2 L-16,-6 L-4,-6 Z"
+      fill="#f0b429" stroke="#c8960a" stroke-width="1"/>
+  </g>
+</svg>
