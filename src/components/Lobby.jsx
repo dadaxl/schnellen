@@ -17,7 +17,26 @@ const C = {
   goldLight: '#f0b429',
   green:     '#27ae60',
   red:       '#c0392b',
-  felt:      '#4a7c59',
+}
+
+// Funktioniert auf HTTP und HTTPS
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text))
+  } else {
+    fallbackCopy(text)
+  }
+}
+
+function fallbackCopy(text) {
+  const el = document.createElement('textarea')
+  el.value = text
+  el.style.position = 'fixed'
+  el.style.opacity = '0'
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
 }
 
 export function Lobby() {
@@ -28,6 +47,7 @@ export function Lobby() {
   const [err, setErr] = useState('')
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState('name')
+  const [copied, setCopied] = useState(false)
 
   const initPlayer = () => {
     if (!nameInput.trim()) return setErr('Bitte Namen eingeben')
@@ -58,6 +78,12 @@ export function Lobby() {
     setLoading(false)
   }
 
+  const handleCopy = () => {
+    copyToClipboard(roomId)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   const isHost = room?.hostId === playerId
   const players = room ? Object.entries(room.players || {}) : []
 
@@ -71,8 +97,6 @@ export function Lobby() {
       justifyContent: 'center',
       padding: 24,
     }}>
-
-      {/* Wirtsschild */}
       <div style={{
         background: C.wood,
         borderRadius: '16px 16px 0 0',
@@ -100,7 +124,6 @@ export function Lobby() {
         }}>Das Tiroler Kartenspiel</p>
       </div>
 
-      {/* Hauptkarte */}
       <div style={{
         background: C.cream,
         width: '100%',
@@ -111,7 +134,6 @@ export function Lobby() {
         border: `2px solid ${C.parchDark}`,
         borderTop: 'none',
       }}>
-
         {step === 'name' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <label style={labelStyle}>Wie heißt du?</label>
@@ -124,9 +146,7 @@ export function Lobby() {
               maxLength={20}
               autoFocus
             />
-            <button style={btnPrimary} onClick={initPlayer}>
-              Weiter →
-            </button>
+            <button style={btnPrimary} onClick={initPlayer}>Weiter →</button>
           </div>
         )}
 
@@ -135,7 +155,6 @@ export function Lobby() {
             <p style={{ fontSize: 18, color: C.ink, fontFamily: "'Playfair Display', serif" }}>
               Willkommen, <strong>{playerName}</strong>!
             </p>
-
             <div style={sectionBox}>
               <label style={labelStyle}>Neuen Tisch eröffnen</label>
               <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
@@ -150,9 +169,7 @@ export function Lobby() {
                 </button>
               </div>
             </div>
-
             <div style={{ textAlign: 'center', color: C.inkLight, fontSize: 14 }}>— oder —</div>
-
             <div style={sectionBox}>
               <label style={labelStyle}>Tisch beitreten</label>
               <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
@@ -173,7 +190,6 @@ export function Lobby() {
 
         {roomId && room?.status === 'lobby' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            {/* Raumcode */}
             <div style={{
               background: C.parchment,
               border: `2px dashed ${C.parchDark}`,
@@ -189,11 +205,12 @@ export function Lobby() {
               </div>
               <button
                 style={{ ...btnSecondary, padding: '6px 14px', fontSize: 13 }}
-                onClick={() => navigator.clipboard.writeText(roomId)}
-              >Kopieren</button>
+                onClick={handleCopy}
+              >
+                {copied ? '✓ Kopiert' : 'Kopieren'}
+              </button>
             </div>
 
-            {/* Spielerliste */}
             <div>
               <label style={labelStyle}>Am Tisch ({players.length}/{room.maxPlayers})</label>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
