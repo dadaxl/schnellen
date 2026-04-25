@@ -91,6 +91,9 @@ export function Lobby() {
     <div style={{
       minHeight: '100vh',
       background: C.bg,
+      backgroundImage: 'url(/texture-wood.jpg)',
+      backgroundSize: '800px auto',
+      backgroundRepeat: 'repeat',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -99,6 +102,9 @@ export function Lobby() {
     }}>
       <div style={{
         background: C.wood,
+        backgroundImage: 'url(/texture-wood.jpg)',
+        backgroundSize: '800px auto',
+        backgroundRepeat: 'repeat',
         borderRadius: '16px 16px 0 0',
         padding: '20px 40px 18px',
         width: '100%',
@@ -113,7 +119,7 @@ export function Lobby() {
           textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
           letterSpacing: '0.04em',
           margin: 0,
-        }}>Schnellen</h1>
+        }}>Mulatschak</h1>
         <p style={{
           color: C.parchDark,
           fontSize: 14,
@@ -121,7 +127,7 @@ export function Lobby() {
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
           fontFamily: "'Lato', sans-serif",
-        }}>Das Tiroler Kartenspiel</p>
+        }}>Das österreichische Kartenspiel</p>
       </div>
 
       <div style={{
